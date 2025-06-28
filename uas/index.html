@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+   <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+   <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+   <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+        <a-light type="directional" intensity="1" position="1 2 1"></a-light>
+        <a-light type="ambient" intensity="0.5"></a-light>
+
+        <a-marker preset="hiro" id="hiro-marker">
+            <a-entity
+                gltf-model="url(assets/whale_animated.glb)"
+                scale="0.3 0.3 0.3"
+                position="-2.2 0.5 0"
+                rotation="0 90 0"
+                animation-mixer="loop: repeat; crossFadeDuration: 1">
+            </a-entity>
+            <a-entity
+                gltf-model="url(assets/knight_idle_animation.glb)"
+                scale="0.002 0.002 0.002"
+                position="0.8 0 0"
+                rotation="0 -90 0"
+                animation-mixer="loop: repeat; crossFadeDuration: 1">
+            </a-entity>
+            <a-entity
+                gltf-model="url(assets/diorama_project_animation.glb)"
+                scale="0.03 0.03 0.03"
+                position="0.63 -0.26 0"
+                rotation="0 180 0"
+                animation-mixer="loop: repeat; crossFadeDuration: 1">
+            </a-entity>
+            <a-entity
+                gltf-model="url(assets/storm_lightning.glb)"
+                scale="0.7 0.7 0.7"
+                position="0.45 1 0"
+                rotation="0 0 0">
+            </a-entity>
+            <a-sound id="lightning" src="assets/lightning.mp3" autoplay="false" loop="true"></a-sound>
+            <a-sound id="whale" src="assets/whale.mp3" autoplay="false" loop="true"></a-sound>
+            <a-sound id="sword" src="assets/sword.mp3" autoplay="false" loop="false"></a-sound>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+    <script>
+        var marker = document.querySelector('#hiro-marker');
+
+        var lightningSound = document.querySelector('#lightning');
+        marker.addEventListener('markerFound', function() {
+            lightningSound.components.sound.playSound();
+        });
+        marker.addEventListener('markerLost', function() {
+            lightningSound.components.sound.stopSound();
+        });
+
+        var whaleSound = document.querySelector('#whale');
+        marker.addEventListener('markerFound', function() {
+            whaleSound.components.sound.playSound();
+        });
+        marker.addEventListener('markerLost', function() {
+            whaleSound.components.sound.stopSound();
+        });
+
+        var swordSound = document.querySelector('#sword');
+        marker.addEventListener('markerFound', function() {
+            swordSound.components.sound.playSound();
+        });
+        marker.addEventListener('markerLost', function() {
+            swordSound.components.sound.stopSound();
+        });
+    </script>
+</body>
+</html>
