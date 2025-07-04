@@ -4,14 +4,9 @@
    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-   <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
-   <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-        <a-light type="directional" intensity="1" position="1 2 1"></a-light>
-        <a-light type="ambient" intensity="0.5"></a-light>
-
         <a-marker preset="hiro" id="hiro-marker">
             <a-entity
                 gltf-model="url(assets/whale_animated.glb)"
@@ -50,28 +45,20 @@
         var marker = document.querySelector('#hiro-marker');
 
         var lightningSound = document.querySelector('#lightning');
+        var whaleSound = document.querySelector('#whale');
+        var swordSound = document.querySelector('#sword');
+
         marker.addEventListener('markerFound', function() {
             lightningSound.components.sound.playSound();
-        });
-        marker.addEventListener('markerLost', function() {
-            lightningSound.components.sound.stopSound();
-        });
-
-        var whaleSound = document.querySelector('#whale');
-        marker.addEventListener('markerFound', function() {
             whaleSound.components.sound.playSound();
-        });
-        marker.addEventListener('markerLost', function() {
-            whaleSound.components.sound.stopSound();
-        });
-
-        var swordSound = document.querySelector('#sword');
-        marker.addEventListener('markerFound', function() {
             swordSound.components.sound.playSound();
         });
         marker.addEventListener('markerLost', function() {
+            lightningSound.components.sound.stopSound();
+            whaleSound.components.sound.stopSound();
             swordSound.components.sound.stopSound();
         });
+
     </script>
 </body>
 </html>

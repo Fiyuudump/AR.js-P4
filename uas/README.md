@@ -1,6 +1,6 @@
 ## Storyboard Report
 
-link doc: https://docs.google.com/document/d/1NEmVVGJywMBjAvooFlxxTbVKKf3rczJu/edit
+link doc: https://docs.google.com/document/d/1NEmVVGJywMBjAvooFlxxTbVKKf3rczJu/edit?usp=sharing&ouid=101172740030567236032&rtpof=true&sd=true
 
 ### Resources
 
